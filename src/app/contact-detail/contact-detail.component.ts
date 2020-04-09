@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { ContactsService } from '../contacts.service';
 import { Contact, PhoneType } from '../contact.model';
 
@@ -9,17 +11,20 @@ import { Contact, PhoneType } from '../contact.model';
 })
 export class ContactDetailComponent implements OnInit {
 
-  public contact:Contact;
+  public contact: Contact;
 
-  constructor(public contactsService:ContactsService) {
-  }
+  constructor(
+    public contactsService: ContactsService,
+    public route: ActivatedRoute
+    ) {  }
 
   ngOnInit() {
-    this.contact = new Contact(1, "Albert", "assets/default-user.png", [
-      {type:PhoneType.work, number:93200621621 },
-      {type:PhoneType.home, number:93444001100 },
-      {type:PhoneType.mobile, number:629304050 } 
-    ], "albert@email.com", "Villaroel 52, 08027, Barcelona" );
+    this.route.paramMap.pipe(
+      map(params => Number(params.get('id')))
+    )
+    .subscribe(id => {
+      this.contact = this.contactsService.getContactById(id);
+    });
   }
 
 }
