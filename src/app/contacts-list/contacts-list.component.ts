@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Contact } from '../contact.model';
 import { ContactsService } from '../contacts.service';
 
@@ -8,15 +9,19 @@ import { ContactsService } from '../contacts.service';
   styleUrls: ['./contacts-list.component.scss']
 })
 export class ContactsListComponent implements OnInit {
-  public contacts:Contact[] = [];
-  constructor(public contactsService:ContactsService) { }
+  public contacts: Contact[] = [];
+
+  constructor(
+    public contactsService: ContactsService,
+    public router: Router
+    ) { }
 
   ngOnInit() {
     this.contacts = this.contactsService.contacts;
   }
 
-  onContactSelected(id:number){
-    //navigate to contact-detail    
+  onContactSelected(id: number) {
+    this.router.navigate(['contact-detail', id, {foo: 'bar'}]);
   }
 
 }

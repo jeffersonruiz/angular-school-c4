@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { ContactsService } from '../contacts.service';
 import { Contact, PhoneType } from '../contact.model';
@@ -21,6 +21,7 @@ export class ContactDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.pipe(
+      tap(params => console.log(params.get('foo'))),
       map(params => Number(params.get('id')))
     )
     .subscribe(id => {
