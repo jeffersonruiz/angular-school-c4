@@ -12,21 +12,25 @@ import { Contact, PhoneType } from '../contact.model';
 })
 export class ContactDetailComponent implements OnInit {
 
-  public contact:Contact;
+  public contact: Contact;
 
   constructor(
-    public contactsService:ContactsService, 
-    public route:ActivatedRoute
+    public contactsService: ContactsService,
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.route.paramMap.pipe(
-      tap(params => console.log("FOO: ", params.get('foo'))),
+      tap(params => console.log('FOO: ', params.get('foo'))),
       map(params => Number(params.get('id')))
     )
     .subscribe(id => {
       this.contact = this.contactsService.getContactById(id);
     });
+
+    this.route.queryParamMap.subscribe(params => {
+      console.log('query params: ', params);
+    } );
   }
 
 }

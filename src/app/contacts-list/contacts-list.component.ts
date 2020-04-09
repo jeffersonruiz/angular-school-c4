@@ -10,9 +10,9 @@ import { ContactsService } from '../contacts.service';
   styleUrls: ['./contacts-list.component.scss']
 })
 export class ContactsListComponent implements OnInit {
-  public contacts:Contact[] = [];
+  public contacts: Contact[] = [];
   constructor(
-    public contactsService:ContactsService, 
+    public contactsService: ContactsService,
     public router: Router
   ) { }
 
@@ -20,8 +20,13 @@ export class ContactsListComponent implements OnInit {
     this.contacts = this.contactsService.contacts;
   }
 
-  onContactSelected(id:number){
-    this.router.navigate(["contact-detail", id, {foo:"bar"}]); 
+  onContactSelected(id: number) {
+    this.router.navigate(['contact-detail', id, {foo: 'bar'}], {
+      queryParams: {
+        hello: 'world',
+        affiliatedId: 12345
+      }
+    });
   }
 
 }

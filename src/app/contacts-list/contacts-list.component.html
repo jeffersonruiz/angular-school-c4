@@ -2,7 +2,12 @@
 
 <div class="container">
     <div class="contacts-list">
+        <!-- <app-contact *ngFor="let contact of contacts"
+        [contact]="contact" (clicked)="onContactSelected($event)"></app-contact> -->
         <app-contact *ngFor="let contact of contacts"
-        [contact]="contact" (clicked)="onContactSelected($event)"></app-contact>
+        [contact]="contact" 
+        [routerLink]="['/contact-detail', contact.id, {foo:'bar'}]"
+        [queryParams]="{param1: true, param2: 1234}">
+        </app-contact>
     </div>
 </div>
