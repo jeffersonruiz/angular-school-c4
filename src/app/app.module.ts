@@ -14,19 +14,20 @@ import { ContactDetailEmptyComponent } from './contact-detail-empty/contact-deta
 import { LogOutComponent } from './log-out/log-out.component';
 
 const appRoutes: Routes = [
-  { path: 'contacts', component: ContactsListComponent, data:{title: "Contacts"} },
-  { path: 'contact-detail', component: ContactDetailShellComponent, data:{title: "Contact detail"},
+  { path: 'contacts', component: ContactsListComponent, data: {title: 'Contacts'} },
+  { path: 'contact-detail', component: ContactDetailShellComponent, data: {title: 'Contact detail'},
     children: [
-      {path: ':id', component:ContactDetailComponent}
-    ] 
+      {path: ':id', component: ContactDetailComponent}
+    ]
   },
-  { path: 'login', component: LoginComponent, data:{title: "Login"} },
-  { path: 'not-found', component:NotFoundComponent, data:{title: "Ooops! 404"}},  
+  { path: 'login', component: LoginComponent, data: {title: 'Login'} },
+  {path: 'logout', component: LogOutComponent, outlet: 'popup'},
+  { path: 'not-found', component: NotFoundComponent, data: {title: 'Ooops! 404'}},
   { path: '',
     redirectTo: '/contacts',
     pathMatch: 'full'
   },
-  { path: '**', redirectTo: 'not-found', pathMatch:'full' }
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' }
 ];
 
 @NgModule({
