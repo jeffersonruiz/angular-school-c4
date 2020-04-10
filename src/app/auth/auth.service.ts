@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {of, Observable} from 'rxjs';
 import {delay, tap} from 'rxjs/operators';
 
-interface User{
-  name:string;
-  email:string;
+interface User {
+  name: string;
+  email: string;
 }
 
 @Injectable({
@@ -12,22 +12,23 @@ interface User{
 })
 export class AuthService {
 
-  public user:User = null;
+  public user: User = null;
+  public redirectUrl: string = null;
 
   constructor() {
-    this.user = JSON.parse(localStorage.getItem("user"));
+    this.user = JSON.parse(localStorage.getItem('user'));
    }
 
-  login():Observable<User>{
-    return of({name:"Peter", email:"peter@gmail.com"}).pipe(
+  login(): Observable<User> {
+    return of({name: 'Peter', email: 'peter@gmail.com'}).pipe(
       delay(750),
       tap(user => this.user = user),
-      tap(user => localStorage.setItem("user", JSON.stringify(user)))
+      tap(user => localStorage.setItem('user', JSON.stringify(user)))
     );
   }
 
-  logout(){
+  logout() {
     this.user = null;
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
   }
 }
