@@ -14,11 +14,15 @@ const appRoutes: Routes = [
   { path: 'contacts', component: ContactsListComponent },
   { path: 'contact-detail/:id', component: ContactDetailComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'not-found', component: NotFoundComponent},
   { path: '',
     redirectTo: '/contacts',
     pathMatch: 'full'
   },
-  { path: '**', component: NotFoundComponent }
+  { path: '**',
+    redirectTo: 'not-found',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
