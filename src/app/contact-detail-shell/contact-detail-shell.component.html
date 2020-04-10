@@ -1,1 +1,5 @@
 <p>Contact detail shell</p>
+
+<p *ngIf="!childRoute.isActivated" >Please, select one contact first</p>
+
+<router-outlet #childRoute="outlet"></router-outlet>

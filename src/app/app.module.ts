@@ -10,18 +10,20 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ContactDetailShellComponent } from './contact-detail-shell/contact-detail-shell.component';
-import { ContactDetailEmptyComponent } from './contact-detail-empty/contact-detail-empty.component';
 
 const appRoutes: Routes = [
-  { path: 'contacts', component: ContactsListComponent, data:{title: "Contacts"} },
-  { path: 'contact-detail/:id', component: ContactDetailComponent, data:{title: "Contact detail"} },
-  { path: 'login', component: LoginComponent, data:{title: "Login"} },
-  { path: 'not-found', component:NotFoundComponent, data:{title: "Ooops! 404"}},  
+  { path: 'contacts', component: ContactsListComponent, data: {title: 'Contacts'} },
+  { path: 'contact-detail', component: ContactDetailShellComponent, data:
+  {title: 'Contact detail'}, children: [
+    {path: ':id', component: ContactDetailComponent}
+  ] },
+  { path: 'login', component: LoginComponent, data: {title: 'Login'} },
+  { path: 'not-found', component: NotFoundComponent, data: {title: 'Ooops! 404'}},
   { path: '',
     redirectTo: '/contacts',
     pathMatch: 'full'
   },
-  { path: '**', redirectTo: 'not-found', pathMatch:'full' }
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -34,7 +36,6 @@ const appRoutes: Routes = [
     LoginComponent,
     NotFoundComponent,
     ContactDetailShellComponent,
-    ContactDetailEmptyComponent
   ],
   imports: [
     BrowserModule,
