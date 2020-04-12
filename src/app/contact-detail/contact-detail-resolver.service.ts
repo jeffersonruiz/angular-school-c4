@@ -9,17 +9,17 @@ import { of, EMPTY, Observable } from 'rxjs';
 })
 export class ContactDetailResolverService implements Resolve<Contact> {
     constructor(
-        private contactsService:ContactsService, 
-        private router:Router
-    ){ }
+        private contactsService: ContactsService,
+        private router: Router
+    ) { }
 
-    resolve(route:ActivatedRouteSnapshot, state:RouterStateSnapshot):Observable<Contact>{
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Contact> {
         const id = Number(route.paramMap.get('id'));
         const contact = this.contactsService.getContactById(id);
 
-        if(contact){
+        if (contact) {
             return of(contact);
-        }else{
+        } else {
             this.router.navigate(['/not-found']);
             return EMPTY;
         }
