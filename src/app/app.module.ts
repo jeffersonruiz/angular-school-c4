@@ -8,8 +8,6 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LogOutComponent } from './log-out/log-out.component';
-
-import { ContactDetailModule } from './contact-detail/contact-detail.module';
 import { AppRoutingModule } from './app-routing.module';
 
 
@@ -25,7 +23,6 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    ContactDetailModule,
     AppRoutingModule,
   ],
   providers: [],
